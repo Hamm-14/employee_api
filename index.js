@@ -9,6 +9,8 @@ const passportJWT = require("./config/passport-jwt-strategy"); //importing passp
 
 app.use(express.urlencoded({ extended: false })); //using body parser
 
+app.use("/api", require("./routes/api")); //for all api routes
+
 app.listen(port, function (err) {
   if (err) {
     console.log("Error in starting the server", err);

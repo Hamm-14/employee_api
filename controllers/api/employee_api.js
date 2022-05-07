@@ -23,7 +23,7 @@ module.exports.register = async function (req, res) {
     ) {
       await Employee.create({
         name: req.body.name,
-        email: req.body.phone,
+        email: req.body.email,
         password: req.body.password,
         age: req.body.age,
         department: req.body.department,
