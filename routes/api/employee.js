@@ -6,6 +6,6 @@ const employeeController = require("../../controllers/api/employee_api"); //impo
 
 router.post("/register", employeeController.register); //all routes with '/register'
 
-// router.post('/login',doctorsController.createSession);    //all routes with '/login'
+router.post("/login", employeeController.createSession); //all routes with '/login'
 
 module.exports = router; //exporting router

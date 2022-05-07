@@ -1,5 +1,5 @@
 const Employee = require("../../models/employee");
-// const PatientReport = require("../../models/patientReport");
+const jwt = require("jsonwebtoken"); //used to generate the token
 
 //controller for registering the employee in db
 module.exports.register = async function (req, res) {
@@ -38,6 +38,31 @@ module.exports.register = async function (req, res) {
     });
   } catch (err) {
     console.log(err);
+    return res.status(500).json({
+      message: "Internal Server Error",
+    });
+  }
+};
+
+//controller for emloyees login
+module.exports.createSession = async function (req, res) {
+  try {
+    let employee = await Employee.findOne({ email: req.body.email });
+
+    if (!employee || employee.password != req.body.password) {
+      return res.status(422).json({
+        message: "Invalid username/password",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Signed in successful, here is your token,please keep it safe",
+      data: {
+        token: jwt.sign(employee.toJSON(), "secret", { expiresIn: "1000000" }),
+      },
+    });
+  } catch (err) {
+    console.log("employee create session error", err);
     return res.status(500).json({
       message: "Internal Server Error",
     });
