@@ -103,3 +103,18 @@ module.exports.updateProfile = async function (req, res) {
     });
   }
 };
+
+//delete employee from DB
+module.exports.deleteEmployee = async function (req, res) {
+  try {
+    await Employee.findByIdAndDelete(req.user._id);
+    return res.status(200).json({
+      message: "Employee deleted successfully",
+    });
+  } catch (err) {
+    console.log("delete employee error", err);
+    return res.status(500).json({
+      message: "Internal Server Error",
+    });
+  }
+};

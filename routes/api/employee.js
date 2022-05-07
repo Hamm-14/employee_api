@@ -16,10 +16,16 @@ router.get(
   employeeController.fetchAllEmployes
 );
 
-router.post(
+router.patch(
   "/update_profile",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }), //update the logged-in employee profile
   employeeController.updateProfile
+);
+
+router.delete(
+  "/delete",
+  passport.authenticate("jwt", { session: false }),
+  employeeController.deleteEmployee
 );
 
 module.exports = router; //exporting router
