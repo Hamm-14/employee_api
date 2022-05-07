@@ -86,3 +86,20 @@ module.exports.fetchAllEmployes = async function (req, res) {
     });
   }
 };
+
+//update employee profile
+module.exports.updateProfile = async function (req, res) {
+  try {
+    if (req.body) {
+      await Employee.findByIdAndUpdate(req.user._id, req.body);
+    }
+    return res.status(200).json({
+      message: "Profile Updated",
+    });
+  } catch (err) {
+    console.log("update employee profile error", err);
+    return res.status(500).json({
+      message: "Internal Server Error",
+    });
+  }
+};

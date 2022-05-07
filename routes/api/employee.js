@@ -16,4 +16,10 @@ router.get(
   employeeController.fetchAllEmployes
 );
 
+router.post(
+  "/update_profile",
+  passport.authenticate("jwt", { session: false }),
+  employeeController.updateProfile
+);
+
 module.exports = router; //exporting router
