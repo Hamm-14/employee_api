@@ -68,3 +68,21 @@ module.exports.createSession = async function (req, res) {
     });
   }
 };
+
+//fetch all employees
+module.exports.fetchAllEmployes = async function (req, res) {
+  try {
+    let employees = await Employee.find({});
+    return res.status(200).json({
+      message: "All Employees",
+      data: {
+        employees: employees,
+      },
+    });
+  } catch (err) {
+    console.log("fetch all employees error", err);
+    return res.status(500).json({
+      message: "Internal Server Error",
+    });
+  }
+};

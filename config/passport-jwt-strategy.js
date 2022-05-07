@@ -17,8 +17,8 @@ passport.use(
         console.log("Error in finding employee from jwt");
         return done(err, false);
       }
-      if (doctor) {
-        return done(null, doctor);
+      if (employee) {
+        return done(null, employee);
       } else {
         return done(null, false);
       }
